@@ -28,7 +28,10 @@ function showIssue(){
             arr.forEach(() => {
                 issue.innerHTML = "";
                 for (var i = 0; i < arr.length; i++)
-                issue.innerHTML +=`<li id="arr[${i}]" class="liE">`+ arr[i].description + `</li>`
+                issue.innerHTML +=`<li id="arr[${i}" class="liE">`
+                + arr[i].description+`<br>`+
+                + arr[i].assigned  +  `<br>`
+                + arr[i].priority   + `<br></li>`
         })}else{
           todoList.innerHTML = ""
         }
