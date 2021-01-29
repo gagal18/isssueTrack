@@ -7,7 +7,37 @@
     <title>Issue Tracker</title>
 </head>
 <body>
-    
+<div class="container">
+    <h1>Issue Tracker</h1>
+    <h2>Write down your issue</h2>
+    <form>
+        <label for="description">Description</label><br>    
+        <textarea type="textarea" id="description" name="description" value="" placeholder="Describe your issue" required></textarea><br>
+        <label for="priority">Priority</label><br>
+        <select name="priority" id="priority">
+            <option value="" disabled selected>Choose priority for your issue</option>
+            <option value="critical">Critical</option>
+            <option value="high">High</option>
+            <option value="medium">Medium</option>
+            <option value="low">Low</option>
+        </select><br>
+        <label for="assigned">Assigned to</label><br>
+        <select name="assigned" id="assigned">
+            <option value="" disabled selected>Choose on which user you want to assign</option>
+            <option value="first">First</option>
+            <option value="second">Second</option>
+            <option value="third">Third</option>
+            <option value="fourth">Fourth</option>
+        </select><br>
+        <label for="priority">Priority</label><br>
+        <select name="priority" id="priority">
+            <option value="" disabled selected>Choose visibility</option>
+            <option value="close">Close</option>
+            <option value="open">Open</option>
+        </select><br>
+        <input type="submit" value="Submit" id="submit">
+    </form>
+</div>
     <script src="app.js"></script>
 </body>
 </html>
