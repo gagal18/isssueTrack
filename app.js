@@ -33,9 +33,8 @@ function setIssue(){
 //Showing the array from local storage to the HTML page
 function showIssue(){
         if(arr.length){
-            arr.forEach(() => {
                 issue.innerHTML = "";
-                for (var i = 0; i < arr.length; i++)
+                for (var i = 0; i < arr.length; i++){
                 issue.innerHTML +=`<li id="arr-${i}" class="liE">`
                 +`<div class="content"><h4>Issue: </h4>`+ arr[i].description+`<br>`
                 +`<h4>Assigned to: </h4>`+ arr[i].assigned + `<br>`
@@ -43,7 +42,7 @@ function showIssue(){
                 `<div id="buttons"><button class = "btn" onclick = "delDesc(${i})"><img src="/2x/del1.png" alt="">
                 </button><button class = "btn" onclick = "closeDesc(${i})"><img src="/2x/ar1.png" alt="">
                 </button></div></li>`
-        })}else{
+        }}else{
           issue.innerHTML = `<h2 class="midText">You have no issues to display</h2>`
         }
 }
