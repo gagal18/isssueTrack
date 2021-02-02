@@ -8,7 +8,7 @@ const description = document.getElementById("description"),
       newName = document.getElementById("newUser"),
       nameSubmit = document.getElementById("nameSubmit")
 var arr = JSON.parse(localStorage.getItem("issue")) || [];
-var users = ["Bojan" , "Metin" ,"Boss" ]
+var users = ["Assistant" , "Worker" ,"Boss" ]
 var obj = {
     issueId : arr.length,
     description : description.value,
@@ -40,8 +40,8 @@ function showIssue(){
                 +`<div class="content"><h4>Issue: </h4>`+ arr[i].description+`<br>`
                 +`<h4>Assigned to: </h4>`+ arr[i].assigned + `<br>`
                 +`<h4>Priority: </h4>`+ arr[i].priority+ `<br></div>`+
-                `<div id="buttons"><button class = "btn" onclick = "delDesc(${i})"><img src="/2x/del.png" alt="">
-                </button><button class = "btn" onclick = "closeDesc(${i})"><img src="/2x/ar.png" alt="">
+                `<div id="buttons"><button class = "btn" onclick = "delDesc(${i})"><img src="/2x/del1.png" alt="">
+                </button><button class = "btn" onclick = "closeDesc(${i})"><img src="/2x/ar1.png" alt="">
                 </button></div></li>`
         })}else{
           issue.innerHTML = `<h2 class="midText">You have no issues to display</h2>`
@@ -68,8 +68,8 @@ function showDesc(i){
     selIssue.innerHTML =`<div class="content"><h4>Issue: </h4>`+ arr[i].description+`<br>`
     +`<h4>Assigned to: </h4>`+ arr[i].assigned + `<br>`
     +`<h4>Priority: </h4>`+ arr[i].priority+ `<br></div>`+
-    `<div id="buttons"><button class = "btn" onclick = "delDesc(${i})"><img src="/2x/del.png" alt="">
-    </button><button class = "btn" onclick = "closeDesc(${i})"><img src="/2x/ar.png" alt="">
+    `<div id="buttons"><button class = "btn" onclick = "delDesc(${i})"><img src="/2x/del1.png" alt="">
+    </button><button class = "btn" onclick = "closeDesc(${i})"><img src="/2x/ar1.png" alt="">
     </button></div>`
 }
 //Setting users from js

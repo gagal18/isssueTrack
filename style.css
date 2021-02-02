@@ -32,6 +32,9 @@ ul li {
 img{
     width: 30px;
 }
+#buttons .btn:hover{
+    background-color: #0069d9;
+}
 #submit{
     margin-top: 50px;
 }
@@ -49,9 +52,18 @@ img{
     text-align: center;
     margin-top: 50px;
 }
-
+.textContent{
+    text-align: center;
+    margin-top: 50px;
+}
+.container{
+    width: 600px;
+}
 @media screen and (max-width : 800px){
     .col{
         margin-top: 50px;
+    }
+    .container{
+        width: 350px;
     }
 }
