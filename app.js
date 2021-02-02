@@ -60,7 +60,7 @@ function delDesc(i){
 // Close the issue
 function closeDesc(i){
     const selIssue = document.getElementById("arr-" + i)
-    selIssue.innerHTML = `<h4>Issue is hidden,Press the button to show the content</h4><button class="show btn" onclick = "showDesc(${i})"><img src="/2x/ar.png" alt=""></button>`;
+    selIssue.innerHTML = `<h4>Issue is hidden,Press the button to show the content</h4><button class="show btn" onclick = "showDesc(${i})"><img src="/2x/ar1.png" alt=""></button>`;
 }
 //Showing the issue on clicked arrow
 function showDesc(i){
