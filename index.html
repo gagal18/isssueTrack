@@ -9,6 +9,7 @@
       integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2"
       crossorigin="anonymous"
     />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
     <link rel="stylesheet" href="style.css" />
     <title>Issue Tracker</title>
   </head>
@@ -44,18 +45,9 @@
                 <option value="" disabled selected>
                   Choose on which user you want to assign
                 </option>
-                <option value="firstU">BOJAN</option>
-                <option value="secondU">WORKER</option>
-                <option value="thirdU">BOSS</option>
-                <option value="fourthU">WAITER</option></select
+                </select
               ><br />
-              <label for="visibility">Visibility</label><br />
-              <select name="visibility" id="visibility">
-                <option value="" disabled selected>Choose visibility</option>
-                <option value="close">Close</option>
-                <option value="open">Open</option></select
-              ><br />
-              <input type="submit" value="Submit" id="submit" />
+              <input class="btn" type="submit" value="Submit" id="submit" />
             </form>
           </div>
           <div class="col">
@@ -63,6 +55,16 @@
           </div>
           <div class="col"></div>
       </div>
+      <!-- <div class="row">
+        <h2>New user?<br>Sign your name:</h2>
+        <input
+        type="text"
+        id="newUser"
+        value=""
+        placeholder="Enter your name"
+      />
+      <button id="nameSubmit">Submit</button>
+      </div> -->
     </div>
     <script
       src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
