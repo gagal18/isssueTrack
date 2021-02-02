@@ -8,7 +8,7 @@ const description = document.getElementById("description"),
       newName = document.getElementById("newUser"),
       nameSubmit = document.getElementById("nameSubmit")
 var arr = JSON.parse(localStorage.getItem("issue")) || [];
-var users = ["BOJAN" , "METIN" ,"BOSS" ]
+var users = ["Bojan" , "Metin" ,"Boss" ]
 var obj = {
     issueId : arr.length,
     description : description.value,
@@ -37,16 +37,14 @@ function showIssue(){
                 issue.innerHTML = "";
                 for (var i = 0; i < arr.length; i++)
                 issue.innerHTML +=`<li id="arr-${i}" class="liE">`
-                + arr[i].description+`<br>`
-                + arr[i].assigned + `<br>`
-                + arr[i].priority+ `<br>`+
-                `<button class = "btn" onclick = "delDesc(${i})"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash-fill" viewBox="0 0 16 16">
-                <path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z"/>
-              </svg></button><button class = "btn" onclick = "closeDesc(${i})"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-down-up" viewBox="0 0 16 16">
-                <path fill-rule="evenodd" d="M11.5 15a.5.5 0 0 0 .5-.5V2.707l3.146 3.147a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 1 0 .708.708L11 2.707V14.5a.5.5 0 0 0 .5.5zm-7-14a.5.5 0 0 1 .5.5v11.793l3.146-3.147a.5.5 0 0 1 .708.708l-4 4a.5.5 0 0 1-.708 0l-4-4a.5.5 0 0 1 .708-.708L4 13.293V1.5a.5.5 0 0 1 .5-.5z"/>
-              </svg></button></li>`
+                +`<div class="content"><h4>Issue: </h4>`+ arr[i].description+`<br>`
+                +`<h4>Assigned to: </h4>`+ arr[i].assigned + `<br>`
+                +`<h4>Priority: </h4>`+ arr[i].priority+ `<br></div>`+
+                `<div id="buttons"><button class = "btn" onclick = "delDesc(${i})"><img src="/2x/del.png" alt="">
+                </button><button class = "btn" onclick = "closeDesc(${i})"><img src="/2x/ar.png" alt="">
+                </button></div></li>`
         })}else{
-          issue.innerHTML = ""
+          issue.innerHTML = `<h2 class="midText">You have no issues to display</h2>`
         }
 }
 // Delete selected issue
@@ -62,22 +60,17 @@ function delDesc(i){
 // Close the issue
 function closeDesc(i){
     const selIssue = document.getElementById("arr-" + i)
-    selIssue.innerHTML = `<h4>Issue is hidden,Press the button to show the content</h4><button class="show btn" onclick = "showDesc(${i})"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-down-up" viewBox="0 0 16 16">
-    <path fill-rule="evenodd" d="M11.5 15a.5.5 0 0 0 .5-.5V2.707l3.146 3.147a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 1 0 .708.708L11 2.707V14.5a.5.5 0 0 0 .5.5zm-7-14a.5.5 0 0 1 .5.5v11.793l3.146-3.147a.5.5 0 0 1 .708.708l-4 4a.5.5 0 0 1-.708 0l-4-4a.5.5 0 0 1 .708-.708L4 13.293V1.5a.5.5 0 0 1 .5-.5z"/>
-  </svg></button>`;
+    selIssue.innerHTML = `<h4>Issue is hidden,Press the button to show the content</h4><button class="show btn" onclick = "showDesc(${i})"><img src="/2x/ar.png" alt=""></button>`;
 }
 //Showing the issue on clicked arrow
 function showDesc(i){
     const selIssue = document.getElementById("arr-" + i)
-    selIssue.innerHTML =`<li id="arr-${i}" class="liE">`
-    + arr[i].description+`<br>`
-    + arr[i].assigned + `<br>`
-    + arr[i].priority+ `<br>`+
-    `<button class = "btn" onclick = "delDesc(${i})"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash-fill" viewBox="0 0 16 16">
-    <path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z"/>
-  </svg></button><button class = "btn" onclick = "closeDesc(${i})"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-down-up" viewBox="0 0 16 16">
-    <path fill-rule="evenodd" d="M11.5 15a.5.5 0 0 0 .5-.5V2.707l3.146 3.147a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 1 0 .708.708L11 2.707V14.5a.5.5 0 0 0 .5.5zm-7-14a.5.5 0 0 1 .5.5v11.793l3.146-3.147a.5.5 0 0 1 .708.708l-4 4a.5.5 0 0 1-.708 0l-4-4a.5.5 0 0 1 .708-.708L4 13.293V1.5a.5.5 0 0 1 .5-.5z"/>
-  </svg></button></li>`
+    selIssue.innerHTML =`<div class="content"><h4>Issue: </h4>`+ arr[i].description+`<br>`
+    +`<h4>Assigned to: </h4>`+ arr[i].assigned + `<br>`
+    +`<h4>Priority: </h4>`+ arr[i].priority+ `<br></div>`+
+    `<div id="buttons"><button class = "btn" onclick = "delDesc(${i})"><img src="/2x/del.png" alt="">
+    </button><button class = "btn" onclick = "closeDesc(${i})"><img src="/2x/ar.png" alt="">
+    </button></div>`
 }
 //Setting users from js
 function usersSetting(){

@@ -14,47 +14,47 @@
     <title>Issue Tracker</title>
   </head>
   <body>
+    <h1>Issue Tracker</h1>
     <div class="container">
-        <h1>Issue Tracker</h1>
       <div class="row">
           <div class="col">
             <h2>Write down your issue</h2>
             <form>
-              <label for="description">Description</label><br />
+              <label for="description"><span class="input-group-text">Description</span></label><br />
               <textarea
                 type="textarea"
                 id="description"
                 name="description"
+                class="form-control"
                 value=""
                 placeholder="Describe your issue"
                 required
               ></textarea
               ><br />
-              <label for="priority">Priority</label><br />
-              <select name="priority" id="priority">
+              <label for="priority"><span class="input-group-text">Priority</span></label><br />
+              <select name="priority" id="priority" class="custom-select" id="inputGroupSelect02">
                 <option value="" disabled selected>
                   Choose priority for your issue
                 </option>
-                <option value="critical">Critical</option>
-                <option value="high">High</option>
-                <option value="medium">Medium</option>
-                <option value="low">Low</option></select
+                <option value="Critical">Critical</option>
+                <option value="High">High</option>
+                <option value="Medium">Medium</option>
+                <option value="Low">Low</option></select
               ><br />
-              <label for="assigned">Assigned to</label><br />
-              <select name="assigned" id="assigned">
+              <label for="assigned"><span class="input-group-text">Assigned to</span></label><br />
+              <select name="assigned" id="assigned" class="custom-select" id="inputGroupSelect02">
                 <option value="" disabled selected>
                   Choose on which user you want to assign
                 </option>
                 </select
               ><br />
-              <input class="btn" type="submit" value="Submit" id="submit" />
+              <input type="submit" value="Submit" id="submit" type="button" class="btn btn-primary btn-lg btn-block"/>
             </form>
           </div>
           <div class="col">
+            <h2>Issues to display</h2>
             <ul id="issues"></ul>
           </div>
-          <div class="col"></div>
-      </div>
       <!-- <div class="row">
         <h2>New user?<br>Sign your name:</h2>
         <input
