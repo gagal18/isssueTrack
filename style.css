@@ -60,6 +60,9 @@ img{
 .container{
     width: 600px;
 }
+.content h4{
+    color: #000;
+}
 @media screen and (max-width : 800px){
     .col{
         margin-top: 50px;
