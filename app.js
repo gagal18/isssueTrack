@@ -25,12 +25,16 @@ function setIssue() {
         assigned: assigned.value,
         priority: priority.value
     }
-    if (description.value != "") {
+    if (description.value.replace(/\s+/, "") != "") {
         arr.push(obj)
         localStorage.setItem("issue", JSON.stringify(arr));
+        assigned.options[0].selected = "true"
+        priority.options[0].selected = "true"
     } else {
         alert("You dont have description for your issue")
     }
+    showIssue();
+    description.value= ""
 }
 //Showing the array from local storage to the HTML page
 function showIssue() {
@@ -126,10 +130,11 @@ function usersSetting() {
 // //Add new user
 function setUser(){
     var name = newName.value
-    if (name != "") {
+    if (name.replace(/\s+/, "") != "") {
         users.push(name)
         var op = document.getElementById("assigned")
         var c = document.createElement("option")
+        c.selected = "true"
         c.text = name;
         op.options.add(c, 1);
         localStorage.setItem("user", JSON.stringify(users));
@@ -138,7 +143,6 @@ function setUser(){
         alert("You have to enter your name!")
     }
 }
-
 //EVENT LISTENERS
 submit.addEventListener("click", setIssue)
 nameSubmit.addEventListener('click', setUser)
