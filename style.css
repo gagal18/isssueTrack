@@ -29,11 +29,25 @@ ul li {
     justify-content: space-between;
     align-items: center;
 }
+ul li span{
+    cursor: pointer;
+}
 img{
     width: 30px;
 }
+#spanToggle{
+    padding: 10px 20px;
+    font-size: 18px;
+    background-color: #2f455c;
+}
+#spanToggle:hover{
+    background-color: #0069d9;
+}
 #buttons .btn:hover{
     background-color: #0069d9;
+}
+#us{
+    color: #2f455c;
 }
 #submit{
     margin-top: 50px;

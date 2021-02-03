@@ -1,83 +1,114 @@
 //Declaration
 const description = document.getElementById("description"),
-      visibility = document.getElementById("visibility"),
-      assigned = document.getElementById("assigned"),
-      priority = document.getElementById("priority"),
-      submit = document.getElementById("submit"),
-      issue = document.getElementById("issues"),
-      newName = document.getElementById("newUser"),
-      nameSubmit = document.getElementById("nameSubmit")
+    visibility = document.getElementById("visibility"),
+    assigned = document.getElementById("assigned"),
+    priority = document.getElementById("priority"),
+    submit = document.getElementById("submit"),
+    issue = document.getElementById("issues"),
+    newName = document.getElementById("newUser"),
+    nameSubmit = document.getElementById("nameSubmit")
 var arr = JSON.parse(localStorage.getItem("issue")) || [];
-var users = ["Assistant" , "Worker" ,"Boss" ]
+var users = ["Assistant", "Worker", "Boss"]
 var obj = {
-    issueId : arr.length,
-    description : description.value,
-    assigned : assigned.value,
-    priority : priority.value
+    issueId: arr.length,
+    description: description.value,
+    status: String,
+    assigned: assigned.value,
+    priority: priority.value
 }
 //Creating the issue(OBJECT)
-function setIssue(){
+function setIssue() {
     obj = {
-        issueId : arr.length,
-        description : description.value,
-        assigned : assigned.value,
-        priority : priority.value
-}
-    if(description.value != ""){
-    arr.push(obj)
-    localStorage.setItem("issue", JSON.stringify(arr));
-    }else{
+        issueId: arr.length,
+        description: description.value,
+        status: "Open",
+        assigned: assigned.value,
+        priority: priority.value
+    }
+    if (description.value != "") {
+        arr.push(obj)
+        localStorage.setItem("issue", JSON.stringify(arr));
+    } else {
         alert("You dont have description for your issue")
     }
 }
 //Showing the array from local storage to the HTML page
-function showIssue(){
-        if(arr.length){
-                issue.innerHTML = "";
-                for (var i = 0; i < arr.length; i++){
-                issue.innerHTML +=`<li id="arr-${i}" class="liE">`
-                +`<div class="content"><h4>Issue: </h4>`+ arr[i].description+`<br>`
-                +`<h4>Assigned to: </h4>`+ arr[i].assigned + `<br>`
-                +`<h4>Priority: </h4>`+ arr[i].priority+ `<br></div>`+
+function showIssue() {
+    if (arr.length) {
+        issue.innerHTML = "";
+        for (var i = 0; i < arr.length; i++) {
+            issue.innerHTML += `<li id="arr-${i}" class="liE">`
+                + `<div class="content">` + `ID:` + arr[i].issueId + `<br><span id="spanToggle"class="badge badge-primary" onclick = "closeDesc(${i})">` + arr[i].status + `</span>` + `<p>Issue: ` + arr[i].description +
+                `</p><br><i  id="ex${i}" class="fa fa-exclamation-circle fa-2x" aria-hidden="true"></i>` + arr[i].priority + `<br>`
+                + `<i id = "us${i}" class="fa fa-user fa-2x" aria-hidden="true"></i>` + arr[i].assigned + `<br></div>` +
                 `<div id="buttons"><button class = "btn" onclick = "delDesc(${i})"><img src="/2x/del1.png" alt="">
                 </button><button class = "btn" onclick = "closeDesc(${i})"><img src="/2x/ar1.png" alt="">
                 </button></div></li>`
-        }}else{
-          issue.innerHTML = `<h2 class="midText">You have no issues to display</h2>`
         }
+        testValuesAssigned()
+        testValuesPriority()
+    } else {
+        issue.innerHTML = `<h2 class="midText">You have no issues to display</h2>`
+    }
 }
 // Delete selected issue
-function delDesc(i){
-     arr.splice(i,1)
-    if(localStorage.getItem("issue") == null) {
-        localStorage.setItem("issue", JSON.stringify(arr));
-    } else {
-        localStorage.setItem("issue", JSON.stringify(arr));
-    }
+function delDesc(i) {
+    arr.splice(i, 1)
+    localStorage.setItem("issue", JSON.stringify(arr));
     showIssue()
 }
 // Close the issue
-function closeDesc(i){
-    const selIssue = document.getElementById("arr-" + i)
-    selIssue.innerHTML = `<h4>Issue is hidden,Press the button to show the content</h4><button class="show btn" onclick = "showDesc(${i})"><img src="/2x/ar1.png" alt=""></button>`;
+function closeDesc(i) {
+    if (arr[i].status == "Open") {
+        arr[i].status = "Close";
+        arr.splice(i, 1, arr[i])
+        localStorage.setItem("issue", JSON.stringify(arr));
+        showIssue()
+    } else {
+        arr[i].status = "Open";
+        arr.splice(i, 1, arr[i])
+        localStorage.setItem("issue", JSON.stringify(arr));
+        showIssue()
+    }
+    showIssue()
+    testValuesAssigned()
+    testValuesPriority()
 }
-//Showing the issue on clicked arrow
-function showDesc(i){
-    const selIssue = document.getElementById("arr-" + i)
-    selIssue.innerHTML =`<div class="content"><h4>Issue: </h4>`+ arr[i].description+`<br>`
-    +`<h4>Assigned to: </h4>`+ arr[i].assigned + `<br>`
-    +`<h4>Priority: </h4>`+ arr[i].priority+ `<br></div>`+
-    `<div id="buttons"><button class = "btn" onclick = "delDesc(${i})"><img src="/2x/del1.png" alt="">
-    </button><button class = "btn" onclick = "closeDesc(${i})"><img src="/2x/ar1.png" alt="">
-    </button></div>`
+//See which value is applied or if ther is any vallue
+function testValuesPriority() {
+    for (var i = 0; i < arr.length; i++) {
+        if (arr[i].priority == "Critical") {
+            document.getElementById(`ex${i}`).style.color = "red";
+        } else if (arr[i].priority == "High") {
+            document.getElementById(`ex${i}`).style.color = "yellow";
+        } else if (arr[i].priority == "Medium") {
+            document.getElementById(`ex${i}`).style.color = "blue";
+        } else if (arr[i].priority == "Low") {
+            document.getElementById(`ex${i}`).style.color = "green";
+        } else if (arr[i].priority == "") {
+            document.getElementById(`ex${i}`).style.display = "none";
+        }
+    };
+
+}
+//See which value is applied or if ther is any vallue
+function testValuesAssigned() {
+    for (var i = 0; i < arr.length; i++) {
+        if (arr[i].assigned == "") {
+            document.getElementById(`us${i}`).style.display = "none";
+        } else if (arr[i].assigned != "") {
+            document.getElementById(`us${i}`).style.display = "inline-block";
+        }
+    }
+
 }
 //Setting users from js
-function usersSetting(){
-        for(var y =0;y<users.length;y++){
-            var op = document.getElementById("assigned")
-            var c  = document.createElement("option")
-            c.text = users[y];
-            op.options.add(c, 1);
+function usersSetting() {
+    for (var y = 0; y < users.length; y++) {
+        var op = document.getElementById("assigned")
+        var c = document.createElement("option")
+        c.text = users[y];
+        op.options.add(c, 1);
     }
 }
 // //Add new user
