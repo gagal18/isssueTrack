@@ -8,7 +8,7 @@ const description = document.getElementById("description"),
     newName = document.getElementById("newUser"),
     nameSubmit = document.getElementById("nameSubmit")
 var arr = JSON.parse(localStorage.getItem("issue")) || [];
-var users = ["Assistant", "Worker", "Boss"]
+var users = JSON.parse(localStorage.getItem("user")) || []
 var obj = {
     issueId: arr.length,
     description: description.value,
@@ -112,13 +112,22 @@ function usersSetting() {
     }
 }
 // //Add new user
-// function setUser(){
-//     var name = newName.value
-//     users.push(name)
-//     usersSetting()
-// }
+function setUser(){
+    var name = newName.value
+    if (name != "") {
+        users.push(name)
+        var op = document.getElementById("assigned")
+        var c = document.createElement("option")
+        c.text = name;
+        op.options.add(c, 1);
+        localStorage.setItem("user", JSON.stringify(users));
+        newName.value = ""
+    } else {
+        alert("You have to enter your name!")
+    }
+}
 //EVENT LISTENERS
 submit.addEventListener("click", setIssue)
-// nameSubmit.addEventListener('click' ,setUser )
+nameSubmit.addEventListener('click', setUser)
 showIssue()
 usersSetting()
