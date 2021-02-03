@@ -38,7 +38,7 @@ function showIssue() {
         issue.innerHTML = "";
         for (var i = 0; i < arr.length; i++) {
             issue.innerHTML += `<li id="arr-${i}" class="liE">`
-                + `<div class="content">` + `ID:` + arr[i].issueId + `<br><span id="spanToggle"class="badge badge-primary" onclick = "closeDesc(${i})">` + arr[i].status + `</span>` + `<p>Issue: ` + arr[i].description +
+                + `<div class="content">` + `ID:` + arr[i].issueId + `<br><span id="spanToggle${i}"class="badge badge-primary" onclick = "closeDesc(${i})">` + arr[i].status + `</span>` + `<p>Issue: ` + arr[i].description +
                 `</p><br><i  id="ex${i}" class="fa fa-exclamation-circle fa-2x" aria-hidden="true"></i>` + arr[i].priority + `<br>`
                 + `<i id = "us${i}" class="fa fa-user fa-2x" aria-hidden="true"></i>` + arr[i].assigned + `<br></div>` +
                 `<div id="buttons"><button class = "btn" onclick = "delDesc(${i})"><img src="/2x/del1.png" alt="">
@@ -47,6 +47,7 @@ function showIssue() {
         }
         testValuesAssigned()
         testValuesPriority()
+        testValuesStatus()
     } else {
         issue.innerHTML = `<h2 class="midText">You have no issues to display</h2>`
     }
@@ -91,6 +92,7 @@ function testValuesPriority() {
     };
 
 }
+
 //See which value is applied or if ther is any vallue
 function testValuesAssigned() {
     for (var i = 0; i < arr.length; i++) {
@@ -98,6 +100,16 @@ function testValuesAssigned() {
             document.getElementById(`us${i}`).style.display = "none";
         } else if (arr[i].assigned != "") {
             document.getElementById(`us${i}`).style.display = "inline-block";
+        }
+    }
+
+}
+function testValuesStatus() {
+    for (var i = 0; i < arr.length; i++) {
+        if (arr[i].status == "Open") {
+            document.getElementById(`spanToggle${i}`).style.backgroundColor = "blue";
+        } else if (arr[i].status == "Close"){
+            document.getElementById(`spanToggle${i}`).style.backgroundColor = "red";
         }
     }
 
@@ -122,10 +134,11 @@ function setUser(){
         op.options.add(c, 1);
         localStorage.setItem("user", JSON.stringify(users));
         newName.value = ""
-    } else {
+    }else {
         alert("You have to enter your name!")
     }
 }
+
 //EVENT LISTENERS
 submit.addEventListener("click", setIssue)
 nameSubmit.addEventListener('click', setUser)

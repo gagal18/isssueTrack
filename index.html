@@ -18,7 +18,7 @@
     <h1>Issue Tracker</h1>
     <div class="container">
             <h2 class="textContent">Write down your issue</h2>
-            <form>
+            
               <label for="description"><span class="input-group-text">Description</span></label><br />
               <textarea
                 type="textarea"
@@ -47,22 +47,48 @@
                 </option>
                 </select
               ><br />
+               <!-- Button trigger modal -->
+<div class="cl">
+  <span class="input-group-text">Not on the list? Sign up</span>
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+  Sign up
+</button>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Enter your name</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+      
+          <input
+          type="text"
+          id="newUser"
+          value=""
+          class="form-control"
+          placeholder="Enter your name"
+        />
+        
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+        <button id="nameSubmit" class="btn btn-primary" data-dismiss="modal">Submit</button>
+      </div>
+    </div>
+  </div>
+</div>
               <input type="submit" value="Submit" id="submit" type="button" class="btn btn-primary btn-lg btn-block"/>
-            </form>
+            
             <h2 class="textContent">Issues to display</h2>
             <ul id="issues"></ul>
-        <h2>New user?<br>Sign your name:</h2>
-        <div class="newUser">
-        <input
-        type="text"
-        id="newUser"
-        value=""
-        class="form-control"
-        placeholder="Enter your name"
-      />
-      <button id="nameSubmit" class="btn btn-primary btn-lg btn-block">Submit</button>
     </div>
-    </div>
+   
     <script
       src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
       integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
