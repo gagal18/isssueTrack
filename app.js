@@ -6,7 +6,9 @@ const description = document.getElementById("description"),
     submit = document.getElementById("submit"),
     issue = document.getElementById("issues"),
     newName = document.getElementById("newUser"),
-    nameSubmit = document.getElementById("nameSubmit")
+    nameSubmit = document.getElementById("nameSubmit"),
+    assignedBtn = document.getElementById("assignedBtn")
+var x = document.getElementById("assignedBtn")
 var arr = JSON.parse(localStorage.getItem("issue")) || [];
 var users = JSON.parse(localStorage.getItem("user")) || []
 var obj = {
@@ -34,7 +36,7 @@ function setIssue() {
         alert("You dont have description for your issue")
     }
     showIssue();
-    description.value= ""
+    description.value = ""
 }
 //Showing the array from local storage to the HTML page
 function showIssue() {
@@ -75,9 +77,6 @@ function closeDesc(i) {
         localStorage.setItem("issue", JSON.stringify(arr));
         showIssue()
     }
-    showIssue()
-    testValuesAssigned()
-    testValuesPriority()
 }
 //See which value is applied or if ther is any vallue
 function testValuesPriority() {
@@ -97,38 +96,52 @@ function testValuesPriority() {
 
 }
 
-//See which value is applied or if ther is any vallue
+//See which value is applied or if there is any value if there isnt value make option to assign it
 function testValuesAssigned() {
     for (var i = 0; i < arr.length; i++) {
         if (arr[i].assigned == "") {
-            document.getElementById(`us${i}`).style.display = "none";
+            document.getElementById(`us${i}`).innerHTML = `<p id="inAssigned"></p><select name="assigned" id="assignedIn${i}" class="custom-select" id="inputGroupSelect02">
+              <option value="" disabled selected>
+                Choose on which user you want to assign
+              </option>
+              </select
+            ><button id="assignedBtn" class="btn btn-primary" onclick = "setNewUser(${i})">Submit</button><br />`;
+            usersSetting('assignedIn' + i)
         } else if (arr[i].assigned != "") {
             document.getElementById(`us${i}`).style.display = "inline-block";
         }
     }
 
 }
+//Set user for unnasigned issue
+function setNewUser(i) {
+    const user = document.getElementById("assignedIn" + i).value
+    arr[i].assigned = user
+    localStorage.setItem("issue", JSON.stringify(arr));
+    showIssue()
+}
+//Test values of status
 function testValuesStatus() {
     for (var i = 0; i < arr.length; i++) {
         if (arr[i].status == "Open") {
             document.getElementById(`spanToggle${i}`).style.backgroundColor = "blue";
-        } else if (arr[i].status == "Close"){
+        } else if (arr[i].status == "Close") {
             document.getElementById(`spanToggle${i}`).style.backgroundColor = "red";
         }
     }
 
 }
 //Setting users from js
-function usersSetting() {
+function usersSetting(id) {
     for (var y = 0; y < users.length; y++) {
-        var op = document.getElementById("assigned")
+        // var op = document.getElementById(id)
         var c = document.createElement("option")
         c.text = users[y];
-        op.options.add(c, 1);
+        document.getElementById(id).options.add(c, 1);
     }
 }
 // //Add new user
-function setUser(){
+function setUser() {
     var name = newName.value
     if (name.replace(/\s+/, "") != "") {
         users.push(name)
@@ -139,7 +152,7 @@ function setUser(){
         op.options.add(c, 1);
         localStorage.setItem("user", JSON.stringify(users));
         newName.value = ""
-    }else {
+    } else {
         alert("You have to enter your name!")
     }
 }
@@ -147,4 +160,4 @@ function setUser(){
 submit.addEventListener("click", setIssue)
 nameSubmit.addEventListener('click', setUser)
 showIssue()
-usersSetting()
+usersSetting('assigned')
