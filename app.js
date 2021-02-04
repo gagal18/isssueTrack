@@ -102,7 +102,7 @@ function testValuesAssigned() {
         if (arr[i].assigned == "") {
             document.getElementById(`us${i}`).innerHTML = `<p id="inAssigned"></p><select name="assigned" id="assignedIn${i}" class="custom-select" id="inputGroupSelect02">
               <option value="" disabled selected>
-                Choose on which user you want to assign
+                Select on which user you want to assign the issue
               </option>
               </select
             ><button id="assignedBtn" class="btn btn-primary" onclick = "setNewUser(${i})">Submit</button><br />`;
