@@ -30,7 +30,11 @@ ul li {
     justify-content: space-between;
     align-items: center;
     border: 2.5px solid #000;
+    border-top: none;
     padding-right: 0;
+}
+ul li:first-child{
+    border-top: 2.5px solid #000;
 }
 ul{
     margin-bottom: 50px;
